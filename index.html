@@ -169,6 +169,35 @@
       .hero { padding: 64px 0 72px; }
       section { padding: 64px 0; }
     }
+    /* Appointment request form */
+    .request { background: var(--tint); }
+    .request-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: start; }
+    .hours { background: var(--green); color: #fff; border-radius: var(--radius); padding: 30px; }
+    .hours h3 { color: #fff; margin-bottom: 14px; }
+    .hours dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin-bottom: 18px; }
+    .hours dt { font-weight: 600; color: var(--gold); }
+    .hours dd { margin: 0; }
+    .hours p { font-size: .92rem; color: rgba(255,255,255,.85); }
+    .form-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; box-shadow: 0 2px 10px rgba(20,57,46,.05); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .field label, .field legend { font-weight: 600; font-size: .92rem; color: var(--green); }
+    .field .hint { font-size: .82rem; color: var(--muted); font-weight: 400; }
+    .field input, .field select, .field textarea {
+      font: inherit; font-size: .97rem; color: var(--ink); background: #fff;
+      border: 1px solid var(--border); border-radius: 10px; padding: 11px 13px; width: 100%;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+    .field textarea { min-height: 96px; resize: vertical; }
+    fieldset.field { border: 0; padding: 0; }
+    .choices { display: flex; flex-wrap: wrap; gap: 8px 18px; font-weight: 400; }
+    .choices label { font-weight: 400; color: var(--ink); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+    .consent { display: flex; gap: 10px; align-items: flex-start; font-size: .88rem; color: var(--muted); margin: 6px 0 18px; }
+    .consent input { margin-top: 4px; }
+    .hidden { display: none; }
+    .form-card .btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+    @media (max-width: 860px) { .request-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -186,7 +215,8 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#area">Service Area</a></li>
         <li><a href="#how">How It Works</a></li>
-        <li><a class="btn btn-gold btn-small" href="#book">Book an Appointment</a></li>
+        <li><a href="#request">Hours</a></li>
+        <li><a class="btn btn-gold btn-small" href="#request">Book an Appointment</a></li>
       </ul>
     </nav>
   </header>
@@ -200,7 +230,7 @@
         <h1>Reliable notary &amp; loan signing services that <em>come to you.</em></h1>
         <p>Mobile, loan signing and remote online notary services across Palm Bay, West Melbourne, Melbourne and the surrounding Brevard County area — handled with care, accuracy and professionalism.</p>
         <div class="hero-actions">
-          <a class="btn btn-gold" href="#book">Book an Appointment</a>
+          <a class="btn btn-gold" href="#request">Book an Appointment</a>
           <a class="btn btn-outline" href="#services">View Services</a>
         </div>
         <div class="hero-facts">
@@ -286,12 +316,12 @@
           <article class="card">
             <div class="step-num">01</div>
             <h3>Request an appointment</h3>
-            <p>Tell us the type of document, number of signers, and your preferred date, time and location.</p>
+            <p>Fill out our <a href="#request">request form</a> with your document type, number of signers, and preferred date, time and location.</p>
           </article>
           <article class="card">
             <div class="step-num">02</div>
             <h3>Get confirmed</h3>
-            <p>We'll confirm your appointment, the fee, and exactly what to have ready before we arrive.</p>
+            <p>We'll confirm your appointment and send an itemized quote, plus exactly what to have ready before we arrive.</p>
           </article>
           <article class="card">
             <div class="step-num">03</div>
@@ -335,14 +365,148 @@
       </div>
     </section>
 
+    <!-- APPOINTMENT REQUEST FORM (Netlify Forms) -->
+    <section id="request" class="request">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Request an Appointment</span>
+          <h2>Tell us what you need</h2>
+          <p>Fill out this short form and we'll reply with a confirmed time and an itemized quote before your appointment, with no surprises.</p>
+        </div>
+        <div class="request-grid">
+          <aside class="hours">
+            <h3>Appointment hours</h3>
+            <dl>
+              <dt>Mon – Fri</dt><dd>5:30 PM – 9:00 PM</dd>
+              <dt>Sat – Sun</dt><dd>Expanded daytime &amp; evening hours</dd>
+            </dl>
+            <p>By appointment only. Late-night, same-day and holiday appointments may be available on request.</p>
+            <p style="margin-top:14px">Prefer to talk? Call <a href="tel:+13219664940" style="color:var(--gold)">321-966-4940</a>.</p>
+          </aside>
+
+          <form class="form-card" name="appointment-request" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company-website">
+            <input type="hidden" name="form-name" value="appointment-request">
+            <p class="hidden"><label>Leave this empty: <input name="company-website"></label></p>
+
+            <div class="form-row">
+              <div class="field"><label for="f-name">Full name</label><input id="f-name" name="name" autocomplete="name" required></div>
+              <div class="field"><label for="f-phone">Phone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></div>
+            </div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+
+            <div class="form-row">
+              <div class="field">
+                <label for="f-service">Service needed</label>
+                <select id="f-service" name="service" required>
+                  <option value="">Choose one</option>
+                  <option>General notarization (mobile)</option>
+                  <option>Remote online notarization</option>
+                  <option>Loan signing</option>
+                  <option>Estate documents (will, POA, trust)</option>
+                  <option>Other / not sure</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-location-type">Where will the signing be?</label>
+                <select id="f-location-type" name="location_type" required>
+                  <option value="">Choose one</option>
+                  <option>Home</option>
+                  <option>Office / business</option>
+                  <option>Hospital</option>
+                  <option>Assisted living / rehab facility</option>
+                  <option>Jail / detention facility</option>
+                  <option>Public place (library, coffee shop)</option>
+                  <option>Online (remote notarization)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-address">Appointment address <span class="hint">(street and city; skip for online appointments)</span></label>
+              <input id="f-address" name="address" autocomplete="street-address">
+            </div>
+
+            <div class="form-row">
+              <div class="field"><label for="f-date">Preferred date</label><input id="f-date" name="preferred_date" type="date" required></div>
+              <div class="field">
+                <label for="f-time">Preferred time</label>
+                <select id="f-time" name="preferred_time" required>
+                  <option value="">Choose one</option>
+                  <option>Weekday evening (5:30 – 9:00 PM)</option>
+                  <option>Weekend morning</option>
+                  <option>Weekend afternoon</option>
+                  <option>Weekend evening</option>
+                  <option>Late night (after 9:00 PM)</option>
+                  <option>As soon as possible (same day)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="field"><label for="f-signers">Number of signers</label><input id="f-signers" name="signers" type="number" min="1" max="20" value="1" required></div>
+              <div class="field"><label for="f-acts">Notarized signatures needed <span class="hint">(best guess)</span></label><input id="f-acts" name="notarizations" type="number" min="1" max="100" value="1"></div>
+            </div>
+
+            <div class="field"><label for="f-docs">What document(s) need to be notarized?</label><input id="f-docs" name="documents" placeholder="e.g. power of attorney, affidavit, vehicle title"></div>
+
+            <div class="form-row">
+              <fieldset class="field">
+                <legend>Does every signer have a current, unexpired photo ID?</legend>
+                <div class="choices">
+                  <label><input type="radio" name="ids_ready" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="ids_ready" value="No"> No</label>
+                  <label><input type="radio" name="ids_ready" value="Not sure"> Not sure</label>
+                </div>
+              </fieldset>
+              <fieldset class="field">
+                <legend>Are the documents printed and ready?</legend>
+                <div class="choices">
+                  <label><input type="radio" name="docs_printed" value="Yes" required> Yes</label>
+                  <label><input type="radio" name="docs_printed" value="No, need printing"> No, I need printing</label>
+                </div>
+              </fieldset>
+            </div>
+
+            <div class="field">
+              <label for="f-witnesses">Witnesses needed? <span class="hint">(Florida wills and powers of attorney need two)</span></label>
+              <select id="f-witnesses" name="witnesses_needed">
+                <option>None</option>
+                <option>I'll bring my own</option>
+                <option>Please arrange 1 witness</option>
+                <option>Please arrange 2 witnesses</option>
+                <option>Not sure</option>
+              </select>
+            </div>
+
+            <div class="field"><label for="f-notes">Anything else we should know?</label><textarea id="f-notes" name="notes" placeholder="Gate codes, parking, facility visiting hours, deadlines..."></textarea></div>
+
+            <div class="field">
+              <label for="f-source">How did you hear about us?</label>
+              <select id="f-source" name="referral_source">
+                <option value="">Choose one</option>
+                <option>Google</option>
+                <option>Facebook / Instagram</option>
+                <option>Friend or family</option>
+                <option>Title company / real estate agent</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <label class="consent"><input type="checkbox" name="consent" value="Yes" required> I agree to be contacted by phone, text or email about this request. Please don't include ID numbers or Social Security numbers in this form.</label>
+
+            <button class="btn btn-gold" type="submit">Send Request</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- BOOK -->
     <section id="book" class="cta">
       <div class="wrap">
         <h2>Ready to schedule?</h2>
-        <p>All services are by appointment only. Book online or send us an email with your document type, number of signers, and preferred date, time and location.</p>
+        <p>All services are by appointment only. Use the request form above, or call or email us.</p>
         <div class="hero-actions">
-          <!-- When you have a booking link, replace the href below with it (e.g. https://calendly.com/your-link) -->
-          <a class="btn btn-gold" href="mailto:Kgray@k3professionalservices.com?subject=Notary%20Appointment%20Request">Book an Appointment</a>
+          <a class="btn btn-gold" href="#request">Request an Appointment</a>
           <a class="btn btn-outline" href="tel:+13219664940">Call 321-966-4940</a>
         </div>
         <p class="email-line">Phone: <a href="tel:+13219664940">321-966-4940</a> &nbsp;·&nbsp; Email: <a href="mailto:Kgray@k3professionalservices.com">Kgray@k3professionalservices.com</a></p>
