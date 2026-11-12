@@ -198,6 +198,18 @@
     .form-card .btn { border: 0; cursor: pointer; font: inherit; font-weight: 600; }
     @media (max-width: 860px) { .request-grid { grid-template-columns: 1fr; } }
     @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+    /* Fees */
+    .fee-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; }
+    .fee-card .price { font-family: var(--heading); font-size: 2rem; color: var(--green); line-height: 1.1; margin: 4px 0 10px; }
+    .fee-card .price small { font-family: var(--body); font-size: .9rem; color: var(--muted); font-weight: 500; }
+    .fee-card ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; font-size: .94rem; color: var(--muted); }
+    .fee-card li::before { content: "•"; color: var(--gold-dark); font-weight: 700; margin-right: 8px; }
+    .fee-table { width: 100%; border-collapse: collapse; margin-top: 26px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; font-size: .96rem; }
+    .fee-table th, .fee-table td { text-align: left; padding: 12px 18px; border-bottom: 1px solid var(--tint); }
+    .fee-table th { background: var(--green); color: #fff; font-weight: 600; }
+    .fee-table th:last-child, .fee-table td:last-child { width: 30%; }
+    .fee-table td:last-child { white-space: nowrap; font-weight: 600; color: var(--green); }
+    .fee-note { margin-top: 16px; font-size: .88rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -214,6 +226,7 @@
       <ul class="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#area">Service Area</a></li>
+        <li><a href="#fees">Fees</a></li>
         <li><a href="#how">How It Works</a></li>
         <li><a href="#request">Hours</a></li>
         <li><a class="btn btn-gold btn-small" href="#request">Book an Appointment</a></li>
@@ -306,6 +319,63 @@
     </section>
 
     <!-- HOW IT WORKS -->
+    <!-- FEES -->
+    <section id="fees">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Fees</span>
+          <h2>Clear, upfront pricing</h2>
+          <p>You'll get an itemized quote before every appointment. Notary fees are set by Florida law; travel and service fees are listed separately.</p>
+        </div>
+        <div class="fee-grid">
+          <article class="card fee-card">
+            <h3>Mobile Notary</h3>
+            <div class="price">from $45 <small>total</small></div>
+            <p>We come to you within about 10 miles of Northwest Palm Bay.</p>
+            <ul>
+              <li>$10 per notarial act (Florida maximum)</li>
+              <li>$35 travel fee, up to 10 miles</li>
+              <li>$50 travel fee, 10–15 miles</li>
+            </ul>
+          </article>
+          <article class="card fee-card">
+            <h3>Remote Online Notary</h3>
+            <div class="price">from $45 <small>total</small></div>
+            <p>Sign from anywhere through a secure, recorded video session.</p>
+            <ul>
+              <li>$25 per online notarial act (Florida maximum)</li>
+              <li>$20 platform &amp; technology fee per session</li>
+            </ul>
+          </article>
+          <article class="card fee-card">
+            <h3>Loan Signings</h3>
+            <div class="price">Quote <small>per package</small></div>
+            <p>Flat fees for title companies, lenders and signing services, with notarizations included.</p>
+            <ul>
+              <li>Refinance, HELOC, purchase, seller and reverse mortgage packages</li>
+              <li>Printing available</li>
+            </ul>
+          </article>
+        </div>
+
+        <table class="fee-table">
+          <thead><tr><th>Add-on</th><th>Fee</th></tr></thead>
+          <tbody>
+            <tr><td>Weekend early or extended hours (7–9 AM, 1–4 PM)</td><td>+$25</td></tr>
+            <tr><td>Same-day appointment</td><td>+$25</td></tr>
+            <tr><td>Late night (after 9 PM)</td><td>+$35</td></tr>
+            <tr><td>Holiday</td><td>+$50</td></tr>
+            <tr><td>Hospital, assisted living or detention facility visit</td><td>+$35</td></tr>
+            <tr><td>Witness (when available, with advance notice)</td><td>$25 each</td></tr>
+            <tr><td>Waiting time (first 15 minutes free)</td><td>$20 per 15 min</td></tr>
+            <tr><td>Document printing</td><td>$0.25/page ($10 min)</td></tr>
+            <tr><td>Travel beyond 15 miles</td><td>$50 + $2/mile past 15</td></tr>
+          </tbody>
+        </table>
+        <p class="fee-note">Florida law caps notary fees at $10 per notarial act and $25 per online notarial act. Travel, convenience and service fees are separate and agreed before your appointment. If a mobile appointment is canceled after we're on the way, or no signer is present, the travel fee still applies.</p>
+      </div>
+    </section>
+
     <section id="how">
       <div class="wrap">
         <div class="section-head">
